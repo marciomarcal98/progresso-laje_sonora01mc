@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laje Sonora 01MC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@800;900&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="cartaz">
+    <div class="cartaz-azul">
+      <small>01MC · 4º bimestre · Curso Técnico UNASP</small>
+      <h1>Projeto Laje Sonora</h1>
+    </div>
+    <div class="cartaz-amarelo">
+      <div>
+        <label for="nome">Seu nome</label>
+        <input id="nome" type="text" placeholder="Nome e sobrenome" autocomplete="off">
+      </div>
+      <p>Marque cada passo assim que terminar. O progresso fica salvo neste navegador. Trocou de computador? Use o código de progresso.</p>
+      <p><a href="https://www.figma.com/design/Y5XlZF7z93ZxMkepHq3Xuv" target="_blank" rel="noopener" style="color:#0F1E3D;font-weight:700">Abrir o Figma do projeto ↗</a></p>
+    </div>
+  </header>
+
+  <div class="barra" id="barra">
+    <div class="barra-linha">
+      <div class="pct" id="pct">0%</div>
+      <div class="trilho" aria-hidden="true"><i id="trilho" style="width:0"></i></div>
+      <div class="conta" id="conta">0 de 0 passos</div>
+    </div>
+    <div class="acoes">
+      <button class="btn prim" id="proximo" type="button">Ir para o próximo passo</button>
+      <button class="btn" id="abrirCodigo" type="button">Código de progresso</button>
+      <button class="btn" id="fechar" type="button">Recolher etapas</button>
+    </div>
+  </div>
+
+  <section class="painel" id="painel" hidden>
+    <h3>Código de progresso</h3>
+    <p>Copie este código e cole em outro computador para continuar de onde parou. Ele também serve para mostrar ao professor até onde você chegou.</p>
+    <textarea id="codigoSaida" readonly aria-label="Seu código"></textarea>
+    <div class="linha-btn">
+      <button class="btn prim" id="copiar" type="button">Copiar código</button>
+      <span class="msg" id="msgCopiar"></span>
+    </div>
+    <p>Tem um código de outro computador? Cole aqui:</p>
+    <textarea id="codigoEntrada" aria-label="Colar código" placeholder="Cole o código aqui"></textarea>
+    <div class="linha-btn">
+      <button class="btn" id="carregar" type="button">Carregar progresso</button>
+      <button class="btn" id="zerar" type="button">Zerar tudo</button>
+      <span class="msg" id="msgCarregar"></span>
+    </div>
+  </section>
+
+  <main class="etapas" id="etapas"></main>
+
+  <p class="rodape">Passo a passo do material de apoio da 01MC no Notion. Seu progresso fica só no seu navegador: o professor não vê as marcações, a não ser que você mostre o código.</p>
+</div>
+
+<script type="text/plain" id="dados">
+## Preparação
+- Abra o [Figma do Projeto](https://www.figma.com/design/Y5XlZF7z93ZxMkepHq3Xuv)
+- Olhe as três páginas no Figma e repare no que se repete: o topo e o rodapé são iguais nas três
+- Crie uma pasta chamada `laje_sonora` e abra no VS Code
+- **Criar:** os arquivos `index.html`, `index.css`, `oficinas.html`, `oficinas.css`, `inscricao.html` e `inscricao.css`. Cada página vai ter o seu próprio CSS
+
+## Início do index.html e fontes
+- **index.html:** coloque a `!` e aperte ENTER
+- **index.html:** mude o atributo `lang` do `html` para “pt-BR”
+- **index.html:** mude o título da aba para “Laje Sonora | Início”
+- **index.html:** faça a conexão com o **index.css**
+- Busque no [Google Fonts](https://fonts.google.com) duas fontes: **Big Shoulders Display** (pesos 800 e 900) e **Archivo** (pesos 400, 500, 600 e 700)
+- **index.html:** copie os links do Google Fonts para dentro do `head`, antes do link do index.css
+
+## HTML do topo
+- **index.html:** dentro do `body`, crie um `header` com as classes `conteudo` e `topo`
+- **index.html:** dentro do `header`, crie um `a` com a classe `logo`, o texto “Laje Sonora” e o `href` apontando para `index.html`
+- **index.html:** abaixo da logo, crie um `nav` com a classe `menu`
+- **index.html:** dentro do `nav`, crie três links:
+  - “Início”, levando para `index.html`
+  - “Oficinas”, levando para `oficinas.html`
+  - “Inscrição”, levando para `inscricao.html`
+- **index.html:** no link “Início”, coloque a classe `atual`. É ela que vai mostrar em qual página o usuário está
+
+## HTML dos cartazes
+- **index.html:** abaixo do `header`, crie um `main`
+- **index.html:** dentro do `main`, crie uma `section` com as classes `conteudo` e `cartazes`
+- **index.html:** dentro da `section`, crie uma `div` com as classes `cartaz` e `cartaz-principal`. Dentro dela, crie um `h1` com o texto “Música se aprende fazendo barulho”
+- **index.html:** abaixo dessa `div`, crie outra `div` com as classes `cartaz` e `cartaz-lateral` e faça o que se pede:
+  - dentro dela, crie um `p` com o texto “Oficinas para quem tem de 14 a 18 anos. Turmas de até 12 pessoas, no fim da tarde, com instrumento emprestado para quem não tem.”
+  - abaixo do `p`, crie um `a` com a classe `botao`, o texto “Ver as oficinas” e o `href` apontando para `oficinas.html`
+
+## HTML dos cards das oficinas
+- **index.html:** abaixo da `section` dos cartazes, crie outra `section` com as classes `conteudo` e `secao`
+- **index.html:** dentro dela, crie um `h2` com a classe `titulo-secao` e o texto “Seis oficinas para começar”
+- **index.html:** abaixo do `h2`, crie uma `div` com a classe `cards`
+- **index.html:** dentro da `.cards`, crie um `article` com a classe `card` e faça o que se pede:
+  - dentro do `article`, crie uma `div` vazia com as classes `foto` e `foto-azul`. Ela fica no lugar da foto
+  - abaixo dela, crie uma `div` com a classe `card-texto`
+  - dentro da `.card-texto`, crie um `h3` com o texto “Violão do zero”
+  - abaixo do `h3`, crie um `p` com o texto “Os primeiros acordes e as batidas que aparecem em quase toda música que você ouve.”
+  - abaixo do `p`, crie uma `div` com a classe `card-info` e, dentro dela, dois `span`: “Iniciante” e “Segundas”
+- Olhando o Figma, crie os outros cinco cards seguindo a mesma estrutura do primeiro (um `article` embaixo do outro, todos dentro da `.cards`):
+  - “Produção de beats”: foto com a classe `foto-amarela`, texto “Montar uma batida no computador, do primeiro bumbo até a música pronta para postar.”, “Iniciante” e “Terças”
+  - “Canto em grupo”: foto com a classe `foto-tinta`, texto “Afinação, respiração e vozes em harmonia, cantando junto com a turma toda.”, “Todos os níveis” e “Quartas”
+  - “Teclado e harmonia”: foto só com a classe `foto`, texto “Entender por que alguns acordes combinam e tocar as músicas que você gosta.”, “Intermediário” e “Quintas”
+  - “Bateria e percussão”: foto com a classe `foto-azul`, texto “Ritmo no corpo primeiro, depois nas baquetas. Do samba ao rock, passando pelo funk.”, “Iniciante” e “Sextas”
+  - “Gravação no celular”: foto com a classe `foto-amarela`, texto “Gravar, editar e mixar uma música usando só o celular e um fone de ouvido.”, “Todos os níveis” e “Sábados”
+
+## HTML do “Como funciona”
+- **index.html:** abaixo da seção dos cards, crie outra `section` com as classes `conteudo` e `secao`. Dentro dela, crie um `h2` com a classe `titulo-secao` e o texto “Como funciona”
+- **index.html:** abaixo do `h2`, crie uma `div` com a classe `passos`
+- **index.html:** dentro da `.passos`, crie uma `div` com a classe `passo` e faça o que se pede:
+  - dentro dela, crie um `p` com a classe `passo-numero` e o texto “1”
+  - abaixo, crie um `h3` com o texto “Escolha uma oficina”
+  - abaixo, crie um `p` com o texto “Veja os dias, os horários e o nível de cada uma. Não precisa saber tocar nada.”
+- Crie os outros dois passos com a mesma estrutura:
+  - “2”, “Faça a inscrição” e “Preencha o formulário com seus dados. A gente responde em até dois dias.”
+  - “3”, “Venha para a aula experimental” e “A primeira aula é gratuita. Se gostar, sua vaga fica garantida até o fim do semestre.”
+
+## HTML do rodapé
+- **index.html:** abaixo do `main` (fora dele), crie um `footer` com a classe `rodape`
+- **index.html:** dentro do `footer`, crie uma `div` com as classes `conteudo` e `rodape-colunas`
+- **index.html:** dentro dela, crie uma `div` com a classe `rodape-coluna`, com um `h4` com o texto “Laje Sonora” e um `p` com o texto “Escola livre de música para adolescentes.”
+- Crie mais três colunas com a mesma estrutura. Use um `br` para quebrar a linha dentro do `p`:
+  - “Endereço”: “Rua das Antenas, 120” e, na linha de baixo, “São Paulo, SP”
+  - “Horários”: “Segunda a sexta, das 16h às 21h” e, na linha de baixo, “Sábado, das 9h às 13h”
+  - “Contato”: `contato@lajesonora.com.br` e, na linha de baixo, “(11) 91234 5678”
+- Abra o `index.html` no navegador. Está tudo sem estilo e empilhado, um elemento embaixo do outro. Agora vem o CSS
+
+## GitHub e Vercel
+- **GitHub Desktop:** transforme a pasta `laje_sonora` em repositório e publique no GitHub, seguindo o passo a passo “Conexão com o GitHub Desktop” no [material de apoio da turma](https://app.notion.com/p/3f0868788a868087a94ce425b83abbf1)
+- **Vercel:** coloque o projeto na Vercel, seguindo o passo a passo “Adicionar projetos a Vercel” no [material de apoio da turma](https://app.notion.com/p/3f0868788a868087a94ce425b83abbf1)
+- Abra o link que a Vercel gerou e guarde. Por enquanto o site está sem estilo, mas a partir de agora todo **Push origin** atualiza o site sozinho
+- A partir de agora, toda aula começa assim: abra o GitHub Desktop e faça o **pull** antes de mexer no código. O guia está [neste link](https://app.notion.com/p/3f0868788a8681b6806df8127dee0e97)
+
+## CSS geral: reset, variáveis e fontes
+- **index.css:** faça o reset do CSS (margem 0, preenchimento 0 e box sizing border box)
+- **index.css:** crie um `:root` e, dentro dele, as variáveis de cor:
+  - `--concreto` com a cor `#E2DFD8`
+  - `--concreto-escuro` com a cor `#CBC7BE`
+  - `--tinta` com a cor `#0F1E3D`
+  - `--caixa-dagua` com a cor `#1F5FBF`
+  - `--fita` com a cor `#F3C623`
+  - `--branco` com a cor `#FFFFFF`
+- **index.css:** no `:root`, crie mais duas variáveis, agora para as fontes:
+  - `--fonte-cartaz` com o valor `"Big Shoulders Display", "Arial Narrow", sans-serif`
+  - `--fonte-texto` com o valor `"Archivo", Arial, sans-serif`
+- **index.css:** faça o que se pede no `body`:
+  - mude a cor do fundo para **concreto**
+  - mude a cor do texto para **tinta**
+  - mude a fonte para **fonte-texto**
+  - mude o tamanho da fonte para 17px
+  - mude a altura da linha para 1.55
+- **index.css:** faça todos os links herdarem a cor do texto de onde estão, com `color: inherit`
+- **index.css:** selecione o `h1`, o `h2` e o `h3` ao mesmo tempo e faça o que se pede:
+  - mude a fonte para **fonte-cartaz**
+  - mude o peso da fonte para 900
+  - mude a altura da linha para 0.95
+- **index.css:** faça o que se pede na classe `.conteudo`:
+  - coloque uma largura máxima de 1200px
+  - centralize na tela com `margin-inline: auto`
+  - coloque um preenchimento de 32px nas laterais usando `padding-inline`
+- Volte no navegador e veja as fontes e as cores aparecendo
+- **GitHub Desktop:** faça o seu primeiro commit do projeto:
+  - confira, na lista da esquerda, os arquivos que você alterou
+  - no campo `Summary`, no canto inferior esquerdo, escreva a mensagem “CSS geral: reset, variáveis e fontes”
+  - clique em `Commit to main`
+  - clique em `Push origin`, no topo da janela
+- Abra o link da Vercel e veja o site já com as cores e as fontes
+
+## CSS do topo com flex
+- **index.css:** no `.topo`, coloque um preenchimento de 28px em cima e embaixo usando `padding-block`
+- **index.css:** no `.topo`, coloque `display: flex`. Volte no navegador e veja o que aconteceu com a logo e o menu
+- **index.css:** no `.topo`, empurre a logo para a esquerda e o menu para a direita com `justify-content: space-between`
+- **index.css:** no `.topo`, centralize a logo e o menu na vertical com `align-items: center`
+- **index.css:** faça o que se pede no `.logo`:
+  - mude a fonte para **fonte-cartaz**
+  - mude o tamanho da fonte para 34px
+  - mude o peso da fonte para 900
+  - remova o sublinhado
+- **index.css:** no `.menu`, coloque os links lado a lado com `display: flex`
+- **index.css:** no `.menu`, coloque um espaço de **36px** entre os links usando a propriedade `gap`
+- **index.css:** faça o que se pede no `.menu a`:
+  - mude o peso da fonte para 600
+  - remova o sublinhado
+  - coloque um preenchimento de 4px embaixo
+  - coloque uma borda embaixo de 4px, sólida e transparente: `border-bottom: 4px solid transparent`
+- **index.css:** no `.menu a:hover`, mude a cor da borda de baixo para **tinta** usando `border-bottom-color`
+- **index.css:** no `.menu a.atual`, mude a cor da borda de baixo para **fita**
+- Passe o mouse no menu. Pense: por que a borda foi criada transparente, em vez de não existir borda nenhuma?
+- **GitHub Desktop:** faça um commit com a mensagem “Topo com flex” e clique em `Push origin`
+
+## CSS dos cartazes
+- **index.css:** no `.cartazes`, coloque uma margem de 16px em cima
+- **index.css:** no `.cartazes`, coloque os dois cartazes lado a lado
+- **index.css:** no `.cartazes`, coloque um espaço de **16px** entre os cartazes
+- **index.css:** no `.cartaz`, coloque um preenchimento de 40px em todos os lados
+- **index.css:** faça o que se pede no `.cartaz-principal`:
+  - mude a cor do fundo para **caixa-dagua**
+  - mude a cor do texto para **branco**
+  - coloque `flex: 2`
+- **index.css:** faça o que se pede no `.cartaz-principal h1`:
+  - mude o tamanho da fonte para 132px
+  - coloque uma largura máxima de `9ch`. O `ch` é a largura de um caractere, então o título fica com mais ou menos 9 letras por linha
+- **index.css:** faça o que se pede no `.cartaz-lateral`:
+  - mude a cor do fundo para **fita**
+  - coloque `flex: 1`. Repare que o cartaz azul ficou com o dobro da largura do amarelo
+  - coloque `display: flex`
+  - mude a direção dos itens para coluna com `flex-direction: column`
+  - separe o texto do botão com `justify-content: space-between` (o botão deve descer para o fim do cartaz)
+  - coloque um espaço de **32px** entre o texto e o botão
+- **index.css:** faça o que se pede no `.cartaz-lateral p`:
+  - mude o tamanho da fonte para 22px
+  - mude o peso da fonte para 600
+  - mude a altura da linha para 1.3
+- **index.css:** faça o que se pede no `.botao`:
+  - mude o display para `inline-block`
+  - mude a cor do fundo para **tinta**
+  - mude a cor do texto para **branco**
+  - mude o peso da fonte para 700
+  - remova o sublinhado
+  - coloque um preenchimento de 16px em cima e embaixo e 28px nas laterais
+  - remova a borda com `border: none`
+  - mude a fonte para **fonte-texto** e o tamanho para 17px
+  - faça a setinha do mouse virar a mãozinha com `cursor: pointer`
+- **index.css:** no `.botao:hover`, mude a cor do fundo para **caixa-dagua**
+- **GitHub Desktop:** faça um commit com a mensagem “Cartazes do topo” e clique em `Push origin`
+
+## CSS dos cards
+- **index.css:** no `.secao`, coloque uma margem de 96px em cima
+- **index.css:** no `.titulo-secao`, mude o tamanho da fonte para 64px e coloque uma margem de 32px embaixo
+- **index.css:** no `.cards`, coloque `display: flex` e repare que os 6 cards ficaram espremidos numa linha só
+- **index.css:** no `.cards`, deixe os cards quebrarem linha quando faltar espaço com `flex-wrap: wrap`
+- **index.css:** no `.cards`, coloque um espaço de **24px** entre os cards
+- **index.css:** faça o que se pede no `.card`:
+  - mude a cor do fundo para **branco**
+  - coloque uma borda de 3px, sólida e da cor **tinta**
+  - coloque `flex: 1 1 340px` (o card pode crescer, pode encolher e começa com 340px de largura)
+- Diminua a largura da janela do navegador e veja os cards se reorganizando sozinhos
+- **index.css:** no `.card .foto`, coloque uma altura de 170px
+- **index.css:** crie as regras de cor das fotos, exatamente nesta ordem:
+  - `.foto` com o fundo **concreto-escuro**
+  - `.foto-azul` com o fundo **caixa-dagua**
+  - `.foto-amarela` com o fundo **fita**
+  - `.foto-tinta` com o fundo **tinta**
+- Pense: por que a regra `.foto` precisa vir antes das outras três?
+- **index.css:** no `.card-texto`, coloque um preenchimento de 24px em todos os lados
+- **index.css:** no `.card h3`, mude o tamanho da fonte para 36px e coloque uma margem de 12px embaixo
+- **index.css:** faça o que se pede no `.card-info`:
+  - coloque uma margem de 20px em cima
+  - coloque um preenchimento de 16px em cima
+  - coloque uma borda em cima de 2px, sólida e da cor **concreto-escuro**
+  - mude o peso da fonte para 600 e o tamanho para 15px
+  - deixe o nível na esquerda e o dia da semana na direita
+- **GitHub Desktop:** faça um commit com a mensagem “Cards das oficinas” e clique em `Push origin`
+
+## CSS do “Como funciona”
+- **index.css:** no `.passos`, coloque os três passos lado a lado com **24px** de espaço
+- **index.css:** faça o que se pede no `.passo`:
+  - coloque uma borda em cima de 6px, sólida e da cor **tinta**
+  - coloque um preenchimento de 20px em cima
+  - faça os três passos ficarem do mesmo tamanho
+- **index.css:** faça o que se pede no `.passo-numero`:
+  - mude a fonte para **fonte-cartaz**, o tamanho para 96px e o peso para 900
+  - mude a altura da linha para 1
+  - mude a cor do texto para **caixa-dagua**
+- **index.css:** no `.passo h3`, mude o tamanho da fonte para 32px e coloque uma margem de 8px em cima e 12px embaixo usando `margin-block`
+
+## CSS do rodapé
+- **index.css:** faça o que se pede no `.rodape`:
+  - coloque uma margem de 120px em cima
+  - mude a cor do fundo para **tinta**
+  - mude a cor do texto para **concreto**
+  - coloque um preenchimento de 56px em cima e embaixo
+- **index.css:** faça o que se pede no `.rodape-colunas`:
+  - coloque as quatro colunas lado a lado
+  - separe as colunas com `space-between`
+  - coloque **40px** de espaço entre elas
+- **index.css:** no `.rodape-coluna`, faça as colunas ficarem do mesmo tamanho
+- **index.css:** faça o que se pede no `.rodape h4`:
+  - mude a fonte para **fonte-cartaz** e o tamanho para 28px
+  - mude a cor do texto para **fita**
+  - coloque uma margem de 12px embaixo
+- Compare a página inicial com o Figma. As duas devem estar iguais
+- **GitHub Desktop:** faça um commit com a mensagem “Página inicial pronta” e clique em `Push origin`
+- Abra o link da Vercel e confira se a página inicial do site também está igual ao Figma
+
+## HTML da página de oficinas
+- **oficinas.html:** copie todo o conteúdo do `index.html` e cole no `oficinas.html`
+- **oficinas.html:** mude o título da aba para “Laje Sonora | Oficinas”
+- **oficinas.html:** no `head`, troque o link do `index.css` pelo `oficinas.css`
+- **oficinas.html:** no menu, tire a classe `atual` do link “Início” e coloque no link “Oficinas”
+- **oficinas.html:** apague tudo o que está dentro do `main`. O topo e o rodapé continuam
+- **oficinas.html:** coloque a classe `conteudo` no `main`
+- **oficinas.html:** dentro do `main`, crie um `h1` com a classe `titulo-pagina` e o texto “Oficinas”
+- **oficinas.html:** abaixo do `h1`, crie um `p` com a classe `subtitulo-pagina` e o texto “Cada oficina tem um encontro por semana, de uma hora e meia. Você pode fazer mais de uma, desde que os horários não se cruzem.”
+- **oficinas.html:** abaixo do `p`, crie uma `div` com a classe `filtros` e, dentro dela, oito `span` com a classe `filtro`: “Todas”, “Iniciante”, “Intermediário”, “Cordas”, “Teclas”, “Voz”, “Ritmo” e “Produção”
+- **oficinas.html:** no filtro “Todas”, acrescente a classe `ativo`
+- **oficinas.html:** abaixo dos filtros, crie uma `div` com a classe `lista`
+- **oficinas.html:** dentro da `.lista`, crie um `article` com a classe `oficina` e faça o que se pede:
+  - dentro dele, crie uma `div` vazia com as classes `foto` e `foto-azul`
+  - abaixo, crie uma `div` com a classe `oficina-texto`
+  - dentro da `.oficina-texto`, crie um `h2` com o texto “Violão do zero” e um `p` com o texto “Você sai da primeira aula tocando três acordes. No fim do semestre, toca uma música inteira com a turma.”
+  - abaixo do `p`, crie uma `div` com a classe `etiquetas` e, dentro dela, dois `span` com a classe `etiqueta`: “Iniciante” e “Cordas”
+  - abaixo da `.oficina-texto` (fora dela), crie uma `div` com a classe `oficina-detalhes`
+  - dentro da `.oficina-detalhes`, crie um `strong` com o texto “Segundas”, um `span` com “Das 17h às 18h30”, outro `span` com “4 vagas restantes” e um `a` com o texto “Quero me inscrever” levando para `inscricao.html`
+- Crie as outras cinco oficinas com a mesma estrutura, um `article` embaixo do outro:
+  - “Produção de beats”: foto `foto-amarela`, texto “Batidas, linhas de baixo e samples montados no computador. Os computadores da escola já vêm com os programas instalados.”, etiquetas “Iniciante” e “Produção”, detalhes “Terças”, “Das 18h às 19h30” e “2 vagas restantes”
+  - “Canto em grupo”: foto `foto-tinta`, texto “Exercícios de respiração e afinação, e depois arranjos a várias vozes com músicas que a própria turma escolhe.”, etiquetas “Todos os níveis” e “Voz”, detalhes “Quartas”, “Das 17h às 18h30” e “9 vagas restantes”
+  - “Teclado e harmonia”: foto só com a classe `foto`, texto “Para quem já toca um pouco e quer entender o que está tocando. Campo harmônico, inversões e acompanhamento.”, etiquetas “Intermediário” e “Teclas”, detalhes “Quintas”, “Das 18h às 19h30” e “5 vagas restantes”
+  - “Bateria e percussão”: foto `foto-azul`, texto “Começa com palmas e pés, passa pelo pandeiro e termina na bateria completa. Ninguém precisa ter instrumento em casa.”, etiquetas “Iniciante” e “Ritmo”, detalhes “Sextas”, “Das 17h às 18h30” e “6 vagas restantes”
+  - “Gravação no celular”: foto `foto-amarela`, texto “Como posicionar o celular, gravar voz e instrumento separados e juntar tudo num aplicativo gratuito de edição.”, etiquetas “Todos os níveis” e “Produção”, detalhes “Sábados”, “Das 10h às 11h30” e “7 vagas restantes”
+- Abra o `oficinas.html` no navegador. O topo e o rodapé estão sem estilo, porque o `oficinas.css` ainda está vazio
+- **oficinas.css:** copie do `index.css` e cole no `oficinas.css` tudo o que a página de oficinas também usa:
+  - o `:root`, o reset, o `body`, os links (`a`), os títulos (`h1, h2, h3`) e o `.conteudo`
+  - todas as regras do topo: `.topo`, `.logo`, `.menu`, `.menu a`, `.menu a:hover` e `.menu a.atual`
+  - todas as regras do rodapé: `.rodape`, `.rodape-colunas`, `.rodape-coluna` e `.rodape h4`
+  - as quatro regras de cor das fotos, na mesma ordem
+- Volte no navegador e veja o topo e o rodapé prontos
+- Pense: se um dia você quiser mudar a cor do topo, em quantos arquivos vai precisar mexer?
+- **GitHub Desktop:** faça um commit com a mensagem “HTML da página de oficinas” e clique em `Push origin`
+
+## CSS da página de oficinas
+- **oficinas.css:** no `.titulo-pagina`, mude o tamanho da fonte para 160px e coloque uma margem de 24px em cima
+- **oficinas.css:** faça o que se pede no `.subtitulo-pagina`:
+  - mude o tamanho da fonte para 22px
+  - coloque uma largura máxima de 640px
+  - coloque uma margem de 16px em cima
+- **oficinas.css:** no `.filtros`, coloque uma margem de 48px em cima
+- **oficinas.css:** no `.filtros`, coloque os filtros lado a lado, quebrando linha quando faltar espaço, com **12px** de espaço
+- **oficinas.css:** faça o que se pede no `.filtro`:
+  - coloque uma borda de 2px, sólida e da cor **tinta**
+  - coloque um preenchimento de 8px em cima e embaixo e 18px nas laterais
+  - mude o peso da fonte para 600 e o tamanho para 15px
+  - deixe o fundo transparente
+- **oficinas.css:** no `.filtro.ativo` (assim, junto e sem espaço, ele seleciona o elemento que tem as duas classes), mude a cor do fundo para **tinta** e a cor do texto para **branco**
+- **oficinas.css:** no `.lista`, coloque uma margem de 40px em cima
+- **oficinas.css:** faça o que se pede no `.oficina`:
+  - coloque um preenchimento de 32px em cima e embaixo
+  - coloque uma borda em cima de 3px, sólida e da cor **tinta**
+  - coloque a foto, o texto e os detalhes lado a lado
+  - centralize os três na vertical
+  - coloque **40px** de espaço entre eles
+- **oficinas.css:** no `.oficina .foto`, coloque uma largura de 240px e uma altura de 170px
+- **oficinas.css:** no `.oficina-texto`, faça o texto ocupar todo o espaço que sobrar
+- Diminua a janela do navegador e repare que a foto fica esmagada
+- **oficinas.css:** no `.oficina .foto`, coloque `flex-shrink: 0` para a foto não encolher mais
+- **oficinas.css:** no `.oficina h2`, mude o tamanho da fonte para 48px e coloque uma margem de 10px embaixo
+- **oficinas.css:** no `.etiquetas`, coloque uma margem de 16px em cima
+- **oficinas.css:** no `.etiquetas`, coloque as etiquetas lado a lado com **8px** de espaço
+- **oficinas.css:** faça o que se pede no `.etiqueta`:
+  - mude a cor do fundo para **branco**
+  - coloque um preenchimento de 4px em cima e embaixo e 12px nas laterais
+  - mude o tamanho da fonte para 14px e o peso para 600
+- **oficinas.css:** faça o que se pede no `.oficina-detalhes`:
+  - coloque uma largura de 220px
+  - mude o tamanho da fonte para 15px
+  - coloque `display: flex`
+  - deixe os itens um embaixo do outro, em coluna
+  - coloque **6px** de espaço entre eles
+- **oficinas.css:** no `.oficina-detalhes strong`, mude o tamanho da fonte para 17px
+- **oficinas.css:** no `.oficina-detalhes a`, coloque uma margem de 10px em cima e mude o peso da fonte para 700
+- Compare a página de oficinas com o Figma
+- **GitHub Desktop:** faça um commit com a mensagem “Página de oficinas pronta” e clique em `Push origin`
+- No site da Vercel, clique em “Oficinas” no menu e confira se a página abre certinho
+
+## HTML da inscrição: explicação
+- **inscricao.html:** copie todo o conteúdo do `oficinas.html` e cole no `inscricao.html`
+- **inscricao.html:** mude o título da aba para “Laje Sonora | Inscrição”
+- **inscricao.html:** no `head`, troque o link do `oficinas.css` pelo `inscricao.css`
+- **inscricao.html:** no menu, tire a classe `atual` do link “Oficinas” e coloque no link “Inscrição”
+- **inscricao.html:** apague tudo o que está dentro do `main`, mas mantenha a classe `conteudo` nele
+- **inscricao.html:** dentro do `main`, crie um `h1` com a classe `titulo-pagina` e o texto “Inscrição”
+- **inscricao.html:** abaixo do `h1`, crie uma `div` com a classe `inscricao`
+- **inscricao.html:** dentro da `.inscricao`, crie uma `section` com a classe `explicacao` e faça o que se pede:
+  - dentro dela, crie um `h2` com o texto “O que acontece depois”
+  - abaixo, crie um `p` com o texto “Assim que você enviar o formulário, a gente confere se ainda tem vaga na oficina escolhida.”
+  - abaixo, crie um `p` com o texto “Em até dois dias você recebe uma mensagem com a data da aula experimental, que é gratuita.”
+  - abaixo, crie um `p` com o texto “Se a turma estiver cheia, seu nome entra na lista de espera e você é avisado quando abrir uma vaga.”
+  - por último, crie um `p` com a classe `aviso` e o texto “Quem tem menos de 18 anos precisa vir à primeira aula com um responsável.”
+
+## HTML do formulário
+- **inscricao.html:** abaixo da `.explicacao` (fora dela, mas ainda dentro da `.inscricao`), crie uma tag `form` com a classe `formulario`
+- **inscricao.html:** no `form`, coloque os atributos `action="#"` e `method="post"`
+- **inscricao.html:** dentro do `form`, crie uma `div` com a classe `linha`
+- **inscricao.html:** dentro da `.linha`, crie uma `div` com a classe `campo`
+- **inscricao.html:** dentro do `.campo`, crie um `label` com o texto “Nome completo”
+- **inscricao.html:** abaixo do `label`, crie um `input` e faça o que se pede:
+  - o tipo deve ser `text`
+  - o `id` e o `name` devem ser `nome`
+  - o `placeholder` deve ser “Como está no seu documento”
+  - coloque o atributo `required`
+- **inscricao.html:** no `label`, coloque o atributo `for="nome"`
+- No navegador, clique no texto “Nome completo” e veja o cursor pular para dentro do campo. É isso que o `for` do label e o `id` do input fazem juntos
+- **inscricao.html:** ainda dentro da mesma `.linha`, crie outro `.campo` com o label “Data de nascimento” e um input do tipo `date`, com id e name `nascimento` e obrigatório. Não esqueça do `for` no label
+- **inscricao.html:** abaixo da primeira `.linha`, crie uma segunda `.linha` com dois campos:
+  - “Email”: input do tipo `email`, id e name `email`, placeholder `voce@exemplo.com` e obrigatório
+  - “Celular com DDD”: input do tipo `tel`, id e name `telefone`, placeholder “(11) 91234 5678” e obrigatório
+- **inscricao.html:** abaixo da segunda linha, crie um `.campo` com o label “Oficina” e, no lugar do input, um `select` com id e name `oficina` e o atributo `required`
+- **inscricao.html:** dentro do `select`, crie as `option`:
+  - a primeira com `value=""` e o texto “Escolha uma oficina”
+  - “Violão do zero” com o value `violao`
+  - “Produção de beats” com o value `beats`
+  - “Canto em grupo” com o value `canto`
+  - “Teclado e harmonia” com o value `teclado`
+  - “Bateria e percussão” com o value `bateria`
+  - “Gravação no celular” com o value `gravacao`
+- **inscricao.html:** abaixo do campo da oficina, crie um `fieldset` com a classe `grupo`
+- **inscricao.html:** dentro do `fieldset`, crie uma `legend` com o texto “Você já toca algum instrumento?”
+- **inscricao.html:** abaixo da `legend`, crie uma `div` com a classe `opcoes`
+- **inscricao.html:** dentro de `.opcoes`, crie uma `div` com a classe `opcao` e faça o que se pede:
+  - dentro dela, crie um `input` do tipo `radio` com id `tocaSim`, name `toca` e value `sim`
+  - ao lado do input, crie um `label` com o texto “Sim” e o `for` apontando para `tocaSim`
+- **inscricao.html:** crie mais duas `.opcao` iguais: “Um pouco” (id `tocaPouco` e value `pouco`) e “Ainda não” (id `tocaNao` e value `nao`). O name das três tem que ser o mesmo: `toca`
+- No navegador, marque “Sim” e depois “Ainda não”. Só um fica marcado, porque os três têm o mesmo name
+- **inscricao.html:** mude o name do “Sim” para `teste` e repare que agora dá para marcar dois ao mesmo tempo. Depois volte o name para `toca`
+- **inscricao.html:** crie outro `fieldset` com a classe `grupo`, a legend “O que você tem em casa para praticar?” e uma `div` com a classe `opcoes`. Dentro dela, crie cinco `.opcao` usando `checkbox` no lugar de radio, todas com o name `tem`:
+  - “Violão”: id `temViolao` e value `violao`
+  - “Teclado”: id `temTeclado` e value `teclado`
+  - “Computador”: id `temComputador` e value `computador`
+  - “Fone de ouvido”: id `temFone` e value `fone`
+  - “Nada por enquanto”: id `temNada` e value `nada`
+- No navegador, repare na diferença: no checkbox dá para marcar vários ao mesmo tempo
+- **inscricao.html:** crie um `.campo` com o label “Por que você quer fazer essa oficina?” e uma `textarea` com id e name `motivo` e o placeholder “Conte em poucas linhas”
+- **inscricao.html:** crie uma `div` com a classe `opcao`, com um checkbox obrigatório (id e name `responsavel`) e o label “Meu responsável sabe desta inscrição”
+- **inscricao.html:** por último, crie uma `div` e, dentro dela, um `button` com a classe `botao`, o tipo `submit` e o texto “Enviar inscrição”
+- No navegador, clique em “Enviar inscrição” com tudo vazio e veja o aviso que aparece. Isso é o `required` funcionando
+- Preencha o email sem o @ e tente enviar de novo. Isso é o `type="email"` funcionando
+- **GitHub Desktop:** faça um commit com a mensagem “Formulário de inscrição” e clique em `Push origin`
+
+## CSS da inscrição: layout com flex
+- **inscricao.css:** copie do `oficinas.css` e cole no `inscricao.css` tudo o que a página de inscrição também usa:
+  - o `:root`, o reset, o `body`, os links (`a`), os títulos (`h1, h2, h3`) e o `.conteudo`
+  - todas as regras do topo e do rodapé
+  - a regra do `.titulo-pagina`
+- **inscricao.css:** copie do `index.css` as regras do `.botao` e do `.botao:hover`. O botão “Enviar inscrição” usa a mesma classe do botão da página inicial
+- Volte no navegador e veja o topo, o título, o rodapé e o botão com estilo
+- **inscricao.css:** no `.inscricao`, coloque uma margem de 56px em cima
+- **inscricao.css:** no `.inscricao`, coloque a explicação e o formulário lado a lado com **72px** de espaço
+- **inscricao.css:** no `.explicacao`, coloque `flex: 1`
+- **inscricao.css:** no `.explicacao h2`, mude o tamanho da fonte para 44px e coloque uma margem de 16px embaixo
+- **inscricao.css:** no `.explicacao p + p`, coloque uma margem de 14px em cima. O `p + p` seleciona todo parágrafo que vem logo depois de outro parágrafo, então o primeiro fica sem margem
+- **inscricao.css:** faça o que se pede no `.aviso`:
+  - coloque uma margem de 32px em cima
+  - coloque um preenchimento de 24px em todos os lados
+  - mude a cor do fundo para **fita**
+  - mude o peso da fonte para 600
+- **inscricao.css:** faça o que se pede no `.formulario`:
+  - mude a cor do fundo para **branco**
+  - coloque uma borda de 3px, sólida e da cor **tinta**
+  - coloque um preenchimento de 40px em todos os lados
+  - coloque `flex: 2`
+  - coloque `display: flex`
+  - deixe os itens um embaixo do outro, em coluna
+  - coloque **28px** de espaço entre eles
+- **inscricao.css:** no `.linha`, coloque os dois campos lado a lado com **24px** de espaço
+- **inscricao.css:** faça o que se pede no `.campo`:
+  - faça os dois campos de cada linha ficarem do mesmo tamanho
+  - coloque o label em cima e o campo embaixo, usando flex em coluna
+  - coloque **8px** de espaço entre o label e o campo
+- **inscricao.css:** no `.grupo`, deixe a legend e as opções em coluna com **12px** de espaço
+- **inscricao.css:** no `.opcoes`, coloque as opções lado a lado, quebrando linha quando faltar espaço, com **24px** de espaço
+- **inscricao.css:** no `.opcao`, coloque a bolinha (ou o quadradinho) e o texto lado a lado, centralizados na vertical, com **8px** de espaço
+- **GitHub Desktop:** faça um commit com a mensagem “Layout do formulário com flex” e clique em `Push origin`
+
+## CSS da inscrição: campos
+- **inscricao.css:** selecione o `.formulario label` e o `.formulario legend` ao mesmo tempo e mude o peso da fonte para 700
+- **inscricao.css:** no `.formulario fieldset`, remova a borda
+- **inscricao.css:** selecione todos os campos de digitar ao mesmo tempo: `.formulario input[type="text"]`, `.formulario input[type="email"]`, `.formulario input[type="tel"]`, `.formulario input[type="date"]`, `.formulario select` e `.formulario textarea`. O `[type="text"]` seleciona só os inputs que têm aquele tipo
+- **inscricao.css:** nessa regra dos campos, faça o que se pede:
+  - coloque uma largura de 100%
+  - coloque um preenchimento de 14px em cima e embaixo e 16px nas laterais
+  - coloque uma borda de 2px, sólida e da cor **tinta**
+  - mude a cor do fundo para **concreto**
+  - mude a fonte para **fonte-texto**, o tamanho para 17px e a cor do texto para **tinta**
+- **inscricao.css:** selecione o `.formulario input:focus`, o `.formulario select:focus` e o `.formulario textarea:focus` ao mesmo tempo. O `:focus` é o estado do campo quando o usuário clica nele para digitar. Faça o que se pede:
+  - coloque um contorno de 3px, sólido e da cor **caixa-dagua** com `outline`
+  - afaste o contorno 2px do campo com `outline-offset: 2px`
+  - mude a cor do fundo para **branco**
+- **inscricao.css:** no `.formulario textarea`, coloque uma altura de 140px e deixe o usuário aumentar só na vertical com `resize: vertical`
+- **inscricao.css:** no `.formulario .opcao label`, mude o peso da fonte para 500
+- **inscricao.css:** selecione o `.formulario input[type="radio"]` e o `.formulario input[type="checkbox"]` ao mesmo tempo e faça o que se pede:
+  - coloque uma largura e uma altura de 20px
+  - mude a cor da bolinha e do quadradinho marcados para **caixa-dagua** com `accent-color`
+- Clique nos campos, marque as opções e compare a página de inscrição com o Figma
+- **GitHub Desktop:** faça um commit com a mensagem “Página de inscrição pronta” e clique em `Push origin`
+
+## Versão para celular
+- Aperte F12 no navegador, ative o modo celular e veja que algumas partes ficam espremidas
+- **index.css:** no final do arquivo, crie um `@media (max-width: 800px)`. Tudo o que estiver dentro dele só vale quando a tela tiver no máximo 800px de largura
+- **index.css:** dentro do `@media`, crie uma regra para `.cartazes, .passos, .rodape-colunas` e faça o que se pede:
+  - mude a direção dos itens para coluna
+  - coloque `align-items: stretch` para os itens ocuparem a largura toda
+- **index.css:** dentro do `@media`, mude o tamanho da fonte do `.cartaz-principal h1` para 84px
+- **oficinas.css:** no final do arquivo, crie um `@media (max-width: 800px)` e faça o que se pede dentro dele:
+  - crie uma regra para `.oficina, .rodape-colunas`, com os itens em coluna e `align-items: stretch`
+  - mude o tamanho da fonte do `.titulo-pagina` para 96px
+  - coloque uma largura de 100% no `.oficina .foto` e no `.oficina-detalhes`
+- **inscricao.css:** no final do arquivo, crie um `@media (max-width: 800px)` e faça o que se pede dentro dele:
+  - crie uma regra para `.inscricao, .linha, .rodape-colunas`, com os itens em coluna e `align-items: stretch`
+  - mude o tamanho da fonte do `.titulo-pagina` para 96px
+- Teste as três páginas no modo celular
+- **GitHub Desktop:** faça um commit com a mensagem “Versão para celular” e clique em `Push origin`
+- Abra o link da Vercel no seu celular de verdade e navegue pelas três páginas
+
+## Entrega final
+- Confira no GitHub se o último commit apareceu e se o site da Vercel está com as três páginas atualizadas
+- VOCÊ ACABOU!!!
+</script>
+
+<script>
+(function(){
+  var CHAVE = "laje-sonora-01mc-v1";
+  var PREFIXO = "LS1-";
+
+  /* ---------- leitura do roteiro ---------- */
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function marcar(s){
+    // separa os trechos de código antes de formatar o resto
+    var partes = s.split(/(`[^`]*`)/g);
+    return partes.map(function(p){
+      if (p.length > 1 && p[0] === "`" && p[p.length-1] === "`") return "<code>"+esc(p.slice(1,-1))+"</code>";
+      var h = esc(p);
+      h = h.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1 ↗</a>');
+      h = h.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+      return h;
+    }).join("");
+  }
+  function formatarPasso(texto){
+    var m = texto.match(/^\*\*([^*]+?):\*\*\s*/);
+    var chip = "";
+    if (m){
+      var nome = m[1], cls = "";
+      if (/\.css$/.test(nome)) cls = "css";
+      else if (/GitHub/i.test(nome)) cls = "git";
+      else if (/Vercel/i.test(nome)) cls = "vercel";
+      chip = '<span class="arq '+cls+'">'+esc(nome)+'</span>';
+      texto = texto.slice(m[0].length);
+    } else if (/Pense:/.test(texto)){
+      chip = '<span class="tag pense">Pense</span>';
+    } else if (/navegador|link da Vercel|site da Vercel|modo celular|celular de verdade|Compare|Diminua a/.test(texto)){
+      chip = '<span class="tag teste">Teste</span>';
+    }
+    return chip + marcar(texto);
+  }
+
+  var linhas = document.getElementById("dados").textContent.split("\n");
+  var etapas = [], atual = null, ultimo = null;
+  linhas.forEach(function(l){
+    if (/^##\s/.test(l)){ atual = {titulo:l.replace(/^##\s+/,""), itens:[]}; etapas.push(atual); return; }
+    if (!atual) return;
+    var sub = l.match(/^\s{2,}-\s+(.*)$/);
+    var top = l.match(/^-\s+(.*)$/);
+    if (top){ ultimo = {texto:top[1], subs:[]}; atual.itens.push(ultimo); }
+    else if (sub && ultimo){ ultimo.subs.push({texto:sub[1]}); }
+  });
+
+  /* cada passo marcável (folha) recebe um índice fixo */
+  var folhas = [];
+  etapas.forEach(function(e,ei){
+    e.folhas = [];
+    e.itens.forEach(function(it){
+      if (it.subs.length){ it.subs.forEach(function(s){ s.idx = folhas.length; folhas.push(s); e.folhas.push(s.idx); }); }
+      else { it.idx = folhas.length; folhas.push(it); e.folhas.push(it.idx); }
+    });
+  });
+  var N = folhas.length;
+
+  /* ---------- estado ---------- */
+  var feito = new Array(N).fill(false);
+  var abertas = {};
+  var nomeAluno = "";
+  function salvar(){
+    try{ localStorage.setItem(CHAVE, JSON.stringify({b:paraCodigo(false), nome:nomeAluno, abertas:abertas})); }catch(e){}
+  }
+  function carregarLocal(){
+    try{
+      var d = JSON.parse(localStorage.getItem(CHAVE) || "null");
+      if (!d) return;
+      if (d.b) deCodigo(d.b, false);
+      nomeAluno = d.nome || "";
+      abertas = d.abertas || {};
+    }catch(e){}
+  }
+
+  /* código: bits dos passos em base64url, mais o nome */
+  function paraCodigo(comNome){
+    var bytes = new Uint8Array(Math.ceil(N/8));
+    feito.forEach(function(v,i){ if(v) bytes[i>>3] |= (1<<(i&7)); });
+    var bin = ""; bytes.forEach(function(b){ bin += String.fromCharCode(b); });
+    var b64 = btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+    if (!comNome) return b64;
+    var nome = nomeAluno.trim();
+    return PREFIXO + b64 + (nome ? "." + btoa(unescape(encodeURIComponent(nome))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"") : "");
+  }
+  function deCodigo(cod, comPrefixo){
+    var nome = null;
+    if (comPrefixo){
+      cod = cod.trim();
+      if (cod.indexOf(PREFIXO) !== 0) throw new Error("prefixo");
+      cod = cod.slice(PREFIXO.length);
+      var ponto = cod.indexOf(".");
+      if (ponto >= 0){ nome = cod.slice(ponto+1); cod = cod.slice(0,ponto); }
+    }
+    var b64 = cod.replace(/-/g,"+").replace(/_/g,"/");
+    while (b64.length % 4) b64 += "=";
+    var bin = atob(b64);
+    var novo = new Array(N).fill(false);
+    for (var i=0;i<N;i++){ var b = bin.charCodeAt(i>>3) || 0; novo[i] = !!(b & (1<<(i&7))); }
+    feito = novo;
+    if (nome){
+      var n = nome.replace(/-/g,"+").replace(/_/g,"/"); while (n.length%4) n+="=";
+      try{ nomeAluno = decodeURIComponent(escape(atob(n))); }catch(e){}
+    }
+  }
+
+  /* ---------- desenho ---------- */
+  var main = document.getElementById("etapas");
+  function criarEtapas(){
+    var html = "";
+    etapas.forEach(function(e,ei){
+      html += '<details class="etapa" data-e="'+ei+'" id="etapa-'+ei+'"><summary>'+
+        '<span class="num">'+(ei+1)+'</span>'+
+        '<span class="etapa-tit"><h2>'+marcar(e.titulo)+'</h2>'+
+        '<span class="mini"><span class="trilho"><i style="width:0"></i></span><span class="mini-conta">0/'+e.folhas.length+'</span></span></span>'+
+        '<span class="selo" hidden>Feito</span><span class="seta" aria-hidden="true">›</span></summary><ul class="passos">';
+      e.itens.forEach(function(it, ii){
+        if (it.subs.length){
+          html += '<li class="passo pai" data-pai="'+ei+'-'+ii+'"><label><input type="checkbox" id="p'+ei+'-'+ii+'"><span class="txt">'+formatarPasso(it.texto)+'</span></label><ul class="subs">';
+          it.subs.forEach(function(s){
+            html += '<li class="passo" data-i="'+s.idx+'"><label><input type="checkbox" id="s'+s.idx+'" data-i="'+s.idx+'"><span class="txt">'+formatarPasso(s.texto)+'</span></label></li>';
+          });
+          html += '</ul></li>';
+        } else {
+          var fim = /VOCÊ ACABOU/.test(it.texto);
+          html += '<li class="passo" data-i="'+it.idx+'"><label><input type="checkbox" id="s'+it.idx+'" data-i="'+it.idx+'"><span class="txt'+(fim?' fim':'')+'">'+formatarPasso(it.texto)+'</span></label></li>';
+        }
+      });
+      html += '</ul></details>';
+    });
+    main.innerHTML = html;
+  }
+
+  function atualizar(){
+    var total = 0;
+    feito.forEach(function(v){ if(v) total++; });
+    var pct = N ? Math.round(total*100/N) : 0;
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("trilho").style.width = pct + "%";
+    document.getElementById("conta").textContent = total + " de " + N + " passos";
+
+    var proximo = feito.indexOf(false);
+    main.querySelectorAll("li.passo[data-i]").forEach(function(li){
+      var i = +li.getAttribute("data-i");
+      var cb = li.querySelector("input");
+      cb.checked = feito[i];
+      li.classList.toggle("ok", feito[i]);
+      li.classList.toggle("atual", i === proximo);
+    });
+    etapas.forEach(function(e,ei){
+      var det = document.getElementById("etapa-"+ei);
+      var n = 0; e.folhas.forEach(function(i){ if(feito[i]) n++; });
+      det.querySelector(".mini i").style.width = (n*100/e.folhas.length) + "%";
+      det.querySelector(".mini-conta").textContent = n + "/" + e.folhas.length;
+      var completa = n === e.folhas.length;
+      det.classList.toggle("feita", completa);
+      det.querySelector(".selo").hidden = !completa;
+      e.itens.forEach(function(it, ii){
+        if (!it.subs.length) return;
+        var li = det.querySelector('[data-pai="'+ei+'-'+ii+'"]');
+        var cb = li.querySelector(":scope > label input");
+        var m = 0; it.subs.forEach(function(s){ if(feito[s.idx]) m++; });
+        cb.checked = m === it.subs.length;
+        cb.indeterminate = m > 0 && m < it.subs.length;
+        li.classList.toggle("ok", m === it.subs.length);
+      });
+    });
+    document.getElementById("codigoSaida").value = paraCodigo(true);
+  }
+
+  function aplicarAbertas(){
+    var proximo = feito.indexOf(false);
+    var temAlguma = Object.keys(abertas).length > 0;
+    etapas.forEach(function(e,ei){
+      var det = document.getElementById("etapa-"+ei);
+      if (temAlguma) det.open = !!abertas[ei];
+      else det.open = proximo >= 0 ? e.folhas.indexOf(proximo) >= 0 : false;
+    });
+  }
+
+  /* ---------- eventos ---------- */
+  main.addEventListener("change", function(ev){
+    var cb = ev.target;
+    if (cb.type !== "checkbox") return;
+    if (cb.hasAttribute("data-i")){
+      feito[+cb.getAttribute("data-i")] = cb.checked;
+    } else {
+      var li = cb.closest("li.pai");
+      li.querySelectorAll("li.passo[data-i]").forEach(function(s){ feito[+s.getAttribute("data-i")] = cb.checked; });
+    }
+    atualizar(); salvar();
+  });
+  main.addEventListener("toggle", function(ev){
+    var det = ev.target;
+    if (!det.classList || !det.classList.contains("etapa")) return;
+    var ei = det.getAttribute("data-e");
+    if (det.open) abertas[ei] = 1; else delete abertas[ei];
+    salvar();
+  }, true);
+
+  document.getElementById("proximo").addEventListener("click", function(){
+    var p = feito.indexOf(false);
+    if (p < 0){ document.getElementById("etapa-"+(etapas.length-1)).scrollIntoView({behavior:"smooth",block:"start"}); return; }
+    var li = main.querySelector('li.passo[data-i="'+p+'"]');
+    var det = li.closest("details");
+    det.open = true;
+    var y = li.getBoundingClientRect().top + window.scrollY - document.getElementById("barra").offsetHeight - 24;
+    window.scrollTo({top:y, behavior:"smooth"});
+    li.querySelector("input").focus({preventScroll:true});
+  });
+  document.getElementById("fechar").addEventListener("click", function(){
+    main.querySelectorAll("details.etapa").forEach(function(d){ d.open = false; });
+    abertas = {}; salvar();
+  });
+  document.getElementById("abrirCodigo").addEventListener("click", function(){
+    var p = document.getElementById("painel");
+    p.hidden = !p.hidden;
+    if (!p.hidden) p.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+  document.getElementById("copiar").addEventListener("click", function(){
+    var ta = document.getElementById("codigoSaida"), msg = document.getElementById("msgCopiar");
+    function selecionar(){ ta.focus(); ta.select(); msg.className="msg"; msg.textContent = "Código selecionado. Use Ctrl+C para copiar."; }
+    try{
+      navigator.clipboard.writeText(ta.value).then(function(){ msg.className="msg ok"; msg.textContent = "Código copiado."; }, selecionar);
+    }catch(e){ selecionar(); }
+  });
+  document.getElementById("carregar").addEventListener("click", function(){
+    var msg = document.getElementById("msgCarregar");
+    var v = document.getElementById("codigoEntrada").value;
+    try{
+      if (!v.trim()) throw new Error("vazio");
+      deCodigo(v, true);
+      document.getElementById("nome").value = nomeAluno;
+      abertas = {}; aplicarAbertas(); atualizar(); salvar();
+      msg.className = "msg ok"; msg.textContent = "Progresso carregado.";
+      document.getElementById("codigoEntrada").value = "";
+    }catch(e){
+      msg.className = "msg erro"; msg.textContent = "Esse código não é válido. Ele começa com LS1- e deve ser colado inteiro.";
+    }
+  });
+  var zerarArmado = false, zerarTimer;
+  document.getElementById("zerar").addEventListener("click", function(ev){
+    var b = ev.currentTarget, msg = document.getElementById("msgCarregar");
+    if (!zerarArmado){
+      zerarArmado = true; b.textContent = "Clique de novo para confirmar";
+      zerarTimer = setTimeout(function(){ zerarArmado = false; b.textContent = "Zerar tudo"; }, 4000);
+      return;
+    }
+    clearTimeout(zerarTimer); zerarArmado = false; b.textContent = "Zerar tudo";
+    feito = new Array(N).fill(false); abertas = {};
+    aplicarAbertas(); atualizar(); salvar();
+    msg.className = "msg"; msg.textContent = "Todas as marcações foram apagadas.";
+  });
+  var campoNome = document.getElementById("nome");
+  campoNome.addEventListener("input", function(){ nomeAluno = campoNome.value; atualizar(); salvar(); });
+
+  /* ---------- início ---------- */
+  carregarLocal();
+  criarEtapas();
+  campoNome.value = nomeAluno;
+  aplicarAbertas();
+  atualizar();
+})();
+</script>
+</body>
+</html>
